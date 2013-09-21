@@ -1,0 +1,24 @@
+.contributors-box{
+	float: left;
+   width: 80%;
+   padding: 3px 3px 3px 3px;
+   border-style: solid;
+   border-color: brown;
+   position: relative;
+}
+
+.cb-heading{
+	padding: 0px 0px 0px 5px;
+	background-color: orangered;
+	position: relative;
+}
+
+.cb-contri{
+	padding: 5px 0px 0px 5px;
+	font-size: 14px;
+}
+
+.cb-user{
+	
+		
+}
