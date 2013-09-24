@@ -40,10 +40,7 @@ class contributors_plugin{
 
 			//first to execute. registers 'contributors' taxonomy and creates terms with name 'user_login'
 			add_action('init',array($this,'add_contributors_taxonomy'));
-			
-			//settings page.
-			//add_action('admin_init',array($this, 'admin_init_functions'));			
-			
+				
 			//adds meta box on post edit screen 	
 			add_action( 'add_meta_boxes', array($this,'contributors_box' ));
 			 
@@ -114,17 +111,6 @@ class contributors_plugin{
 			}//for loop
 
 	}//registering 'contributors' taxonomy and create and insert terms
-
-/**
- *'admin_init' hook
- */
-
-
-/**
- *'admin_menu' hook
- * Adds a settings page for contributors plugin
- */
-
 
 /**
  *'add_meta_boxes' hook
