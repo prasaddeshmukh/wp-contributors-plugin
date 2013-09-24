@@ -356,7 +356,6 @@ class contributors_plugin{
 		wp_enqueue_style( 'contributors_css' );
 	}
 
-
 /**
 *Add settings link on plugin page
 */	
