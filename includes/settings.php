@@ -5,17 +5,7 @@
  *Settings/options page for contributors plugin 
  */
 
-
-//default settings	
-	register_activation_hook(__FILE__, 'contributors_defaults');
-	function contributors_add_defaults() {
-		$tmp = get_option('plugin_options');
-		if(!is_array($tmp)){
-		$arr = array("option_set_cbox" => "above", "option_set_author"=>"yes");
-		update_option('plugin_options', $arr);
-		}	
-		}		
-
+		
 /**
  *Callbacks from 'admin_init' add_settings_field
  */
@@ -26,14 +16,16 @@
 		}
 
 	function contributors_box_radio(){
+		
 		$options = get_option('plugin_options');
-		$items = array("above", "below");	
-
+		$items = array("above", "below");
+		//foreach($options as $option){}
 		foreach($items as $item) {
-			$checked = ($options['option_set_cbox']==$item) ? ' checked="checked" ' : '';
-			echo "<label><input ".$checked." value='$item' name='plugin_options[option_set_cbox]' type='radio' /> $item</label><br />";
+			$checked = ($options['cbox_option']==$item) ? ' checked="checked" ' : '';
+			echo "<label><input ".$checked." value='$item' name='plugin_options[cbox_option]' type='radio' /> $item</label><br />";
 		
 		}
+		//update_option('plugin_option_cbox',$item);
 		}
 	
 	
@@ -44,12 +36,14 @@
 
 	function original_author_radio(){
 		$options = get_option('plugin_options');
-		$items = array("yes", "no");	
+		$items = array("yes", "no");
+		//var_dump($options);
+		//foreach($options as $option){}
 		foreach($items as $item) {
-			$checked = ($options['option_set_author']==$item) ? ' checked="checked" ' : '';
-			echo "<label><input ".$checked." value='$item' name='plugin_options[option_set_author]' type='radio' /> $item</label><br />";
-			
+			$checked = ($options['author_option']==$item) ? ' checked="checked" ' : '';
+			echo "<label><input ".$checked." value='$item' name='plugin_options[author_option]' type='radio' /> $item</label><br />";
 		}
+		//update_option('plugin_options_author',$item);
 		}
 
 /**
@@ -57,8 +51,8 @@
 */	
 	function options_add_page(){
 			add_options_page('contributors Plugin Page','Contributors Settings', 'administrator', __FILE__, 'contributors_plugin_options_page');
-	}
-	add_action('admin_menu','options_add_page');
+			}
+		add_action('admin_menu','options_add_page');
 
 //Callback from options_add_page to add setting fields to settings page		
 	function contributors_plugin_options_page(){
@@ -68,6 +62,7 @@
 		<h2>Contributors Plugin Settings</h2>
 		<form action="options.php" method="post">
 			<?php settings_fields('plugin_options');?>
+			<?php //settings_fields('plugin_options_author');?>
 			<?php do_settings_sections(__FILE__);?>				
 			<p class="submit">
 				<input name="submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save Changes');?>"/>
@@ -81,14 +76,20 @@
 *'admin_init' hook registering settings, add setting sections and add settings fields
 */	
 		
-add_action('admin_init','options_init');
-function options_init(){
-	register_setting('plugin_options', 'plugin_options', 'plugin_options_validate');
-	add_settings_section('contributors_box_section','Contributors Box Section','contributors_box_section',__FILE__);
-	add_settings_field('radio_buttons_contributors_box','Contributos Box Postion','contributors_box_radio',__FILE__,'contributors_box_section');
-		
-	add_settings_section('original_author_display_section','Original Author Display Section','original_author_display_section',__FILE__);
-	add_settings_field('radio_buttons_original_author','Original Author Display','original_author_radio',__FILE__,'original_author_display_section');
-}
-
+	add_action('admin_init','options_init');
+	function options_init(){
+		register_setting('plugin_options', 'plugin_options');
+		//delete_option('plugin_options');
+			$tmp = get_option('plugin_options');
+	   	 if((!is_array($tmp))) {
+				$arr = array("cbox_option" => "below", "author_option"=>"no");
+					update_option('plugin_options',$arr); //if add_option ->  ,'','yes');
+				}
+		add_settings_section('contributors_box_section','Contributors Box Section','contributors_box_section',__FILE__);
+		add_settings_field('radio_buttons_contributors_box','Contributos Box Postion','contributors_box_radio',__FILE__,'contributors_box_section');
+	
+		//register_setting('plugin_options_author', 'plugin_options_author');	
+		add_settings_section('original_author_display_section','Original Author Display Section','original_author_display_section',__FILE__);
+		add_settings_field('radio_buttons_original_author','Original Author Display','original_author_radio',__FILE__,'original_author_display_section');
+		}
 ?>

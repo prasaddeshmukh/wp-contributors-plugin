@@ -143,7 +143,7 @@ class contributors_plugin{
 		 
 		//check option for original author display and execute the respective code
 		$set_options = get_option('plugin_options');			
-		if($set_options['option_set_author'] == 'yes'){		
+		if($set_options['author_option'] == 'yes'){		
 			echo 'Original Author: '.$orginal_author->display_name;
 			}
 		
@@ -288,7 +288,7 @@ class contributors_plugin{
 			//displays original author(the one who created the post) along with his/her gravatar if it checked from settings page
 			$set_options = get_option('plugin_options');			
 			
-			if($set_options['option_set_author'] == 'yes'){
+			if($set_options['author_option'] == 'yes'){
 				
 				$cb_data .= get_avatar($author->user_email, 35);
 				$cb_data .= "<a href= '?author=$author_id'>".$author->display_name."</a>(author) ";
@@ -313,7 +313,7 @@ class contributors_plugin{
 					}			
 				}
 				
-				if(count($terms) == 0 && $set_options['option_set_author'] == 'no'){
+				if(count($terms) == 0 && $set_options['author_option'] == 'no'){
 					$cb_data .="<b>NO CONTRIBUTORS SELECTED AND DISPLAY ORIGINAL AUTHOR IF OFF</b>";			
 				}
 			
@@ -321,7 +321,7 @@ class contributors_plugin{
 			
 			//attach contributors box to content as per selected option for it from settings page
 			$set_options = get_option('plugin_options');
-			if($set_options['option_set_cbox'] == 'above')
+			if($set_options['cbox_option'] == 'above')
 				return "$cb_data".$content;	//above the content	
 				
 				return $content."$cb_data"; //below the content
