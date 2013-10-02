@@ -6,15 +6,17 @@ Tested up to: 3.6.1
 Stable tag: 1.0
 License: GPLv2 or later
 
-Contributors-plugin allows users(admin/editor/author) to select authors(wordpress users) as a contributors for a post and displays them in contributors box on the respective post.
+Contributors-plugin allows users(admin/editor/author) to select authors(wordpress users) as a contributors through ajax 
+autocomplete powered search functionality for a post and displays them in contributors box on the respective post.
 
 == Description ==
 
 Contributors-plugin puts a meta box with the list of users along with checkboxes on the post edit screens. This allows users(admin/editor/author)
 to select more than one author(user) as a contributor for the post. Selected contributors are displayed in a contributors box on the post 
-page along with their gravatars.  
+page along with their gravatars.  Users can search users through ajax powered search fields.
 
 Major features of Contributors-plugin 1.0 include:
+* Ajax powered search functionality with autocomplete to search users.
 * Checkboxes of the selected contributors are always in checked state. No need to select again the same contributors selected during 
 previous edit ;)
 * In the contributors box gravatars of the contributors is displayed with their name.
