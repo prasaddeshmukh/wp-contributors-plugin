@@ -138,7 +138,7 @@ class Contributors_Plugin {
 	function cp_contributors_box() {
 		
 		add_meta_box(
-			'contributors-box-id', 'Contributors', array($this,'cp_user_names_with_checkboxes'), 'any', 'side', 'high' 			  
+			'contributors-box-id', 'Contributors', array($this,'cp_user_names_with_checkboxes'), 'post', 'side', 'high' 			  
       );
       
       }
